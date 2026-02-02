@@ -59,7 +59,7 @@ Krab is a beautiful, highly customizable macOS widget app that keeps your AI ass
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Sleywil/Krab.git
+git clone https://github.com/Sleywill/Krab.git
 cd Krab
 ```
 
@@ -71,7 +71,7 @@ open Krab.xcodeproj
 3. Build and run (⌘R)
 
 ### Download Release
-Coming soon! Check the [Releases](https://github.com/Sleywil/Krab/releases) page.
+Coming soon! Check the [Releases](https://github.com/Sleywill/Krab/releases) page.
 
 ## 🚀 Quick Start
 
@@ -188,8 +188,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/Sleywil/Krab/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Sleywil/Krab/discussions)
+- **Issues**: [GitHub Issues](https://github.com/Sleywill/Krab/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Sleywill/Krab/discussions)
 
 ---
 
