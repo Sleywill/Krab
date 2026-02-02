@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 import AppKit
 import Carbon
+import UserNotifications
 
 // MARK: - NotificationManager
 @MainActor

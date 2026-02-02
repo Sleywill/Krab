@@ -43,8 +43,8 @@ class WeatherService: NSObject, ObservableObject {
         let status = locationManager.authorizationStatus
         switch status {
         case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.requestAlwaysAuthorization()
+        case .authorized, .authorizedAlways:
             locationManager.requestLocation()
         default:
             // Use default location or saved location
@@ -103,14 +103,17 @@ class WeatherService: NSObject, ObservableObject {
             let (data, _) = try await URLSession.shared.data(from: url)
             let response = try JSONDecoder().decode(OpenMeteoResponse.self, from: data)
             
-            let location = locationName ?? await reverseGeocode(coordinate)
+            var location = locationName
+            if location == nil {
+                location = await reverseGeocode(coordinate)
+            }
             
             let weather = WeatherData(
                 temperature: convertTemperature(response.current.temperature_2m),
                 condition: mapWeatherCode(response.current.weather_code),
                 humidity: Int(response.current.relative_humidity_2m),
                 windSpeed: response.current.wind_speed_10m,
-                location: location,
+                location: location ?? "Unknown",
                 high: convertTemperature(response.daily.temperature_2m_max.first ?? 0),
                 low: convertTemperature(response.daily.temperature_2m_min.first ?? 0),
                 feelsLike: convertTemperature(response.current.apparent_temperature),
@@ -181,7 +184,7 @@ extension WeatherService: CLLocationManagerDelegate {
     
     nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         Task { @MainActor in
-            if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways {
+            if manager.authorizationStatus == .authorized || manager.authorizationStatus == .authorizedAlways {
                 manager.requestLocation()
             }
         }

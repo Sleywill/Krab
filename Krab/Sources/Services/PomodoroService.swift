@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 import UserNotifications
+import AppKit
 
 @MainActor
 class PomodoroService: ObservableObject {
